@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:social_media/ui/colors.dart';
 import 'package:social_media/ui/dashboard/dashboard.dart';
 import 'package:social_media/ui/home/home_page.dart';
@@ -24,14 +25,18 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
           foregroundColor: Colors.black,
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
         ),
         buttonTheme: ButtonThemeData(
           shape: StadiumBorder(),
         ),
         primarySwatch: Colors.teal,
         primaryColor: AppColors.primary,
+        floatingActionButtonTheme:
+            FloatingActionButtonThemeData(backgroundColor: Colors.black),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           selectedItemColor: AppColors.accent,
+          backgroundColor: Colors.white,
           
         ),
         textTheme: base

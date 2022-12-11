@@ -1,25 +1,74 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:social_media/ui/components/svg_icon.dart';
 import 'package:social_media/ui/home/home_page.dart';
+import 'package:social_media/ui/profile/profile_page.dart';
 import 'package:social_media/utils/assets.dart';
 
-class Dashboard extends StatelessWidget {
+class Dashboard extends HookWidget {
   const Dashboard({super.key});
 
   @override
   Widget build(BuildContext context) {
-        final theme = Theme.of(context);
+    final theme = Theme.of(context);
     final style = theme.textTheme;
+    final index = useState<int>(0);
+
+    const List<Widget> icons =  [
+      SvgIcon(IconAsset.home),
+      Icon(Icons.chat_bubble_outline_rounded),
+      Icon(Icons.favorite_outline_rounded),
+      Icon(CupertinoIcons.person_circle_fill)
+    ];
+
+    final List<Widget> navItems = icons
+        .map(
+          (e) {
+            final i = icons.indexOf(e);
+            return IconButton(
+            onPressed: () {
+              index.value = i;
+            },
+            icon: e,
+            color: index.value == i? theme.bottomNavigationBarTheme.selectedItemColor: theme.bottomNavigationBarTheme.unselectedItemColor,
+          );}
+        )
+        .toList();
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: SizedBox(
+        height: 60,
+        width: 60,
+        child: Transform.rotate(
+          angle: pi / 4,
+          child: FloatingActionButton(
+            onPressed: () {},
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(23)),
+            child: Transform.rotate(
+              angle: pi / 4,
+              child: const Icon(Icons.add_circle_outline),
+            ),
+          ),
+        ),
+      ),
       body: [
         Stack(
           alignment: Alignment.bottomCenter,
           children: [
-            HomePage(),
+            [
+              HomePage(),
+              Scaffold(),
+              Scaffold(),
+              ProfilePage(),
+            ][index.value],
             Material(
-              borderRadius: BorderRadius.only(
+              color: theme.bottomNavigationBarTheme.backgroundColor,
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(20),
                 topRight: Radius.circular(20),
               ),
@@ -30,29 +79,13 @@ class Dashboard extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: SvgIcon(IconAsset.home),
-                        color:  theme.bottomNavigationBarTheme.selectedItemColor,
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.chat_bubble_outline_rounded),
-                        color: theme.bottomNavigationBarTheme.unselectedItemColor,
-                      ),
-                      SizedBox(
+                      navItems[0],
+                      navItems[1],
+                      const SizedBox(
                         width: 72,
                       ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.favorite_outline_rounded),
-                        color: theme.bottomNavigationBarTheme.unselectedItemColor,
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(CupertinoIcons.person_circle_fill),
-                        color: theme.bottomNavigationBarTheme.unselectedItemColor,
-                      ),
+                      navItems[2],
+                      navItems[3],
                     ],
                   ),
                 ),
