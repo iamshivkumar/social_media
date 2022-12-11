@@ -16,4 +16,5 @@ class IconAsset {
   static const chat = "assets/icons/chat.svg";
   static const home = "assets/icons/home.svg";
   static const menu = "assets/icons/menu.svg";
+  static const add = "assets/icons/add.svg";
 }

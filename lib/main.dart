@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:social_media/ui/colors.dart';
+import 'package:social_media/ui/dashboard/dashboard.dart';
 import 'package:social_media/ui/home/home_page.dart';
+
+import 'ui/splash/splash_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,12 +14,41 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final base = ThemeData.light().textTheme;
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        shadowColor: Colors.black.withOpacity(0.25),
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          foregroundColor: Colors.black,
+        ),
+        buttonTheme: ButtonThemeData(
+          shape: StadiumBorder(),
+        ),
+        primarySwatch: Colors.teal,
+        primaryColor: AppColors.primary,
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          selectedItemColor: AppColors.accent,
+          
+        ),
+        textTheme: base
+            .copyWith(
+              headlineLarge: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+              headlineSmall: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            )
+            .apply(
+              displayColor: Colors.black,
+              fontFamily: "Poppins",
+            ),
       ),
-      home: const HomePage(),
+      home: const Dashboard(),
     );
   }
 }

@@ -7,14 +7,15 @@ class AppColors {
   static const themeColor = Color(0xFFE1F6F4);
   static const Color pink = Color(0xFFF5C8C6);
   static const Color accentLine = Color(0xFFEEF2E2);
+  static const Color accent = Color(0xFF7DB9B3);
 
   static const Gradient gradient = RadialGradient(
     colors: [
-      Color(0xFFFFE1E0),
       Color(0xFFE1F6F4),
+      Color(0xFFFFE1E0),
     ],
-    center: Alignment.bottomRight,
-    radius: 56,
+    center: Alignment.bottomLeft,
+    radius: 1.25,
   );
 
 }
