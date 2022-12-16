@@ -15,19 +15,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final base = ThemeData.light().textTheme;
+    final base = ThemeData.light();
+    final colorScheme =
+        ColorScheme.fromSwatch(primarySwatch: Colors.teal).copyWith(
+      primaryContainer: AppColors.themeColor,
+      surfaceVariant: AppColors.lightGray,
+    );
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        shadowColor: Colors.black.withOpacity(0.25),
+        shadowColor: Colors.black.withOpacity(0.125),
         scaffoldBackgroundColor: Colors.white,
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           backgroundColor: Colors.transparent,
           elevation: 0,
           foregroundColor: Colors.black,
           systemOverlayStyle: SystemUiOverlayStyle.dark,
         ),
-        buttonTheme: ButtonThemeData(
+        colorScheme: colorScheme,
+        buttonTheme: const ButtonThemeData(
           shape: StadiumBorder(),
         ),
         primarySwatch: Colors.teal,
@@ -37,9 +43,8 @@ class MyApp extends StatelessWidget {
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           selectedItemColor: AppColors.accent,
           backgroundColor: Colors.white,
-          
         ),
-        textTheme: base
+        textTheme: base.textTheme
             .copyWith(
               headlineLarge: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -51,6 +56,12 @@ class MyApp extends StatelessWidget {
             .apply(
               displayColor: Colors.black,
               fontFamily: "Poppins",
+            )
+            .copyWith(
+              bodySmall: const TextStyle(
+                color: AppColors.gray,
+                fontFamily: "Poppins",
+              ),
             ),
       ),
       home: const Dashboard(),

@@ -7,6 +7,7 @@ class Labels {
   static const next = "Next";
   static const online = "Online";
   static const posts = "Posts";
+    static const searchForContacts = "Search for contacts";
   static const socially = "Socially";
   static const welcomeTo = "Welcome to";
   static const writeAMessage = "Write a message...";

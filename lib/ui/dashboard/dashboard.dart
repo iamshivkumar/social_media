@@ -4,10 +4,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:social_media/ui/chats/conversations_page.dart';
 import 'package:social_media/ui/components/svg_icon.dart';
 import 'package:social_media/ui/home/home_page.dart';
 import 'package:social_media/ui/profile/profile_page.dart';
 import 'package:social_media/utils/assets.dart';
+
+import '../components/app_floating_button.dart';
 
 class Dashboard extends HookWidget {
   const Dashboard({super.key});
@@ -40,21 +43,8 @@ class Dashboard extends HookWidget {
         .toList();
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: SizedBox(
-        height: 60,
-        width: 60,
-        child: Transform.rotate(
-          angle: pi / 4,
-          child: FloatingActionButton(
-            onPressed: () {},
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(23)),
-            child: Transform.rotate(
-              angle: pi / 4,
-              child: const Icon(Icons.add_circle_outline),
-            ),
-          ),
-        ),
+      floatingActionButton: const AppFlotingButton(
+        icon: Icon(Icons.add_circle_outline),
       ),
       body: [
         Stack(
@@ -62,7 +52,7 @@ class Dashboard extends HookWidget {
           children: [
             [
               HomePage(),
-              Scaffold(),
+              ConversationsPage(),
               Scaffold(),
               ProfilePage(),
             ][index.value],
