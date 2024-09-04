@@ -10,7 +10,6 @@ class Assets {
   static const vector = "assets/vector.svg";
   static const conversationsBg = "assets/conversations_bg.svg";
   static const chatBg = "assets/chat_bg.svg";
-
   static String profile(int i) => "assets/profiles/profile$i.png";
 }
 
